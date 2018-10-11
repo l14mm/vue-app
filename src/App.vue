@@ -2,9 +2,10 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <SearchBar @termChange="onTermChange"></SearchBar>
-    <VideoDetail :video="selectedVideo"></VideoDetail>
-    <VideoList @videoSelect="onVideoSelect" :videos="videos"></VideoList>
-    {{ videos.length }}
+    <div class="row">
+      <VideoDetail :video="selectedVideo"></VideoDetail>
+      <VideoList @videoSelect="onVideoSelect" :videos="videos"></VideoList>
+    </div>
   </div>
 </template>
 
@@ -16,7 +17,7 @@ import VideoDetail from "./components/VideoDetail.vue";
 import { API_KEY } from "./keys.json";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     SearchBar,
     VideoList,
@@ -30,24 +31,26 @@ export default {
       this.selectedVideo = video;
     },
     onTermChange(searchTerm) {
-      axios.get("https://www.googleapis.com/youtube/v3/search", {
-        params: {
-          key: API_KEY,
-          type: "vidio",
-          part: "snippet",
-          q: searchTerm
-        }
-      }).then(response => {
-        this.videos = response.data.items;
-      });
+      axios
+        .get("https://www.googleapis.com/youtube/v3/search", {
+          params: {
+            key: API_KEY,
+            type: "vidio",
+            part: "snippet",
+            q: searchTerm
+          }
+        })
+        .then(response => {
+          this.videos = response.data.items;
+        });
     }
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
