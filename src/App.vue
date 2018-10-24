@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header></Header>
-    <router-view></router-view>
+    <div class="ui container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -13,7 +15,7 @@ export default {
   components: {
     Header
   }
-}
+};
 </script>
 
 <style>
