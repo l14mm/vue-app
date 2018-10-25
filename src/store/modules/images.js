@@ -19,6 +19,11 @@ const actions = {
         const { token } = rootState.auth;
         await api.uploadImages(images, token);
         router.push("/");
+    },
+    async deleteImage({ rootState }, hash) {
+        const { token } = rootState.auth;
+        await api.deleteImage(hash, token);
+        router.push("/");
     }
 };
 

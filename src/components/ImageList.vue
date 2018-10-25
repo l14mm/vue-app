@@ -1,7 +1,7 @@
 <template>
 <div>
     <div v-if="isLoggedIn" class="image-container">
-        <img v-for="image in allImages" :src="image.link" />
+        <img v-for="image in allImages" :src="image.link" @click="deleteImage(image.deletehash)" />
     </div>
     <h2 v-else>
         Log in to get started!
@@ -15,7 +15,9 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ImageList",
   computed: mapGetters(["allImages", "isLoggedIn"]),
-  methods: mapActions(["fetchImages"]),
+  methods: {
+      ...mapActions(["fetchImages", "deleteImage"]),
+  },
   created() {
     this.fetchImages();
   }
