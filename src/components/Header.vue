@@ -3,10 +3,10 @@
   <router-link to="/" class="item active">
     My App
   </router-link>
-  {{ isLoggedIn }}
   <div class="right menu">
       <div class="right menu">
           <div v-if="isLoggedIn" class="horizontal">
+              <div v-if="username" class="item">{{ `Welcome ${username}` }}</div>
               <router-link to="/" class="item">Galleries</router-link>
               <router-link to="/upload" class="item">Upload</router-link>
               <a class="item" @click="logout">Logout</a>
@@ -23,7 +23,7 @@
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "MyApp",
-  computed: mapGetters(["isLoggedIn"]),
+  computed: mapGetters(["isLoggedIn", "username"]),
   methods: mapActions(["login", "logout"])
 };
 </script>
