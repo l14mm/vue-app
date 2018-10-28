@@ -24,6 +24,11 @@ const actions = {
         const { token } = rootState.auth;
         await api.deleteImage(hash, token);
         router.push("/");
+    },
+    async search({ rootState, commit }, query) {
+        const { token } = rootState.auth;
+        const response = await api.search(token, query.target.value);
+        commit("setImages", response.data.data);
     }
 };
 

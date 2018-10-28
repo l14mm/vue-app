@@ -40,5 +40,12 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         });
+    },
+    search(token, query) {
+        return axios.get(`${ROOT_URL}/3/gallery/search/?q=${query}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
     }
 }

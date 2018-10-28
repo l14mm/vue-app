@@ -7,7 +7,9 @@
       <div class="right menu">
           <div v-if="isLoggedIn" class="horizontal">
               <div v-if="username" class="item">{{ `Welcome ${username}` }}</div>
-              <router-link to="/" class="item">Galleries</router-link>
+              <router-link to="/" class="item">My Photos</router-link>
+              <div class="item">Search:</div>
+              <input class="item search" @change="search"/>
               <router-link to="/upload" class="item">Upload</router-link>
               <a class="item" @click="logout">Logout</a>
           </div>
@@ -24,7 +26,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "MyApp",
   computed: mapGetters(["isLoggedIn", "username"]),
-  methods: mapActions(["login", "logout"])
+  methods: mapActions(["login", "logout", "search"])
 };
 </script>
 
@@ -32,5 +34,8 @@ export default {
 .horizontal {
   display: flex;
   flex-direction: row;
+}
+.search {
+  border: black solid 2px;
 }
 </style>
